@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ADOpenIDConnect.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ADOpenIDConnect.Controllers
 {
@@ -23,6 +24,16 @@ namespace ADOpenIDConnect.Controllers
             return View();
         }
 
+        [Authorize]
+        public IActionResult Profile()
+        {
+            var model = new ProfileViewModel
+            {
+                Name = User.Identity.Name,
+                Claims = User.Claims
+            };
+            return View(model);
+        }
         public IActionResult Privacy()
         {
             return View();

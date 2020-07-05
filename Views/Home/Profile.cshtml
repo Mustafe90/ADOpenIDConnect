@@ -1,0 +1,9 @@
+﻿@model ProfileViewModel
+
+
+<h1>Hi @Model.Name</h1>
+
+@foreach (var claim in Model.Claims)
+{
+    <h3>@claim.Type: @claim.Value @claim.Issuer | from: @claim.OriginalIssuer </h3>
+}
